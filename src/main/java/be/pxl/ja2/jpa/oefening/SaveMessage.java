@@ -1,26 +1,25 @@
-package be.pxl.ja2.jpa;
+package be.pxl.ja2.jpa.oefening;
 
+import be.pxl.ja2.jpa.model.Contact;
 import be.pxl.ja2.jpa.model.Message;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
-public class Opdracht2GetMessage {
+public class SaveMessage {
+    public static void main(String[] args) {
 
-    public static void main(String [] args) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
 
         try {
+            // create entityManagerFactory is much of process power
             entityManagerFactory = Persistence.createEntityManagerFactory("musicdb_pu");
+            // create entityManager is not much of process power
             entityManager = entityManagerFactory.createEntityManager();
-
-            TypedQuery<Message> findAll = entityManager.createQuery("Select m from Message m", Message.class);
-            List<Message> resultList = findAll.getResultList();
-            for (Message message : resultList) {
-                System.out.println(message.getId() + " " + message.getText());
-            }
-
+            Message message = entityManager.find(Message.class, 1);
+            System.out.println(message);
         }
         finally {
             if (entityManager != null) {
@@ -31,5 +30,4 @@ public class Opdracht2GetMessage {
             }
         }
     }
-
 }

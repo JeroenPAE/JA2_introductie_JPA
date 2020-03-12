@@ -12,7 +12,9 @@ public class Demo1Find {
 		EntityManagerFactory entityManagerFactory = null;
 		EntityManager entityManager = null;
 		try {
+			// create entityManagerFactory is much of process power
 			entityManagerFactory = Persistence.createEntityManagerFactory("musicdb_pu");
+			// create entityManager is not much of process power
 			entityManager = entityManagerFactory.createEntityManager();
 			Contact contact = entityManager.find(Contact.class, 1);
 			System.out.println(contact);
