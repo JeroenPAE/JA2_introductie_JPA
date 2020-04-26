@@ -35,6 +35,8 @@ public class Demo5RelationsOneToOne {
 			Patient result = query.getSingleResult();
 			System.out.println(patient.getMedicalFile().getHeight());
 			patient.getMedicalFile().setWeight(65.9);
+
+			// merge is hier wel nodig omdat je de medicalfile hebt aangepast en niet de patient zelf.
 			entityManager.merge(patient);
 			tx.commit();
 		}
